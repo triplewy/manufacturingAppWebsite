@@ -1,0 +1,33 @@
+.users {
+  display: flex;
+  flex-direction: column;
+}
+
+.users>ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20%;
+}
+
+.users li {
+  display: flex;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.users li:hover {
+  background-color: #f1f1f1;
+}
+
+.users li>p {
+  flex: 1;
+  margin: auto 0;
+  text-align: left;
+  color: #337ab7;
+}
+
+.users li>button>img {
+  height: 25px;
+  width: 25px;
+}

@@ -1,0 +1,24 @@
+.importDropzone {
+  display: flex;
+  margin: 50px auto;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.importDropzone>div {
+  display: flex;
+  margin: auto auto;
+}
+
+.importDropzone>div>p {
+  font-weight: 300;
+}
+
+.importDropzone>div>label {
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: 300;
+  color: #337ab7;
+}

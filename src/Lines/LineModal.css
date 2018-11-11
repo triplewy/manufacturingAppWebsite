@@ -1,0 +1,41 @@
+.addLine {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0;
+}
+
+.addLine>div {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.addLine>div>p {
+  margin-top: auto;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px 0;
+}
+
+.addLine>div>input {
+  padding: 5px 0;
+}
+
+.addLine>ul {
+  padding: 20px 0;
+}
+
+.addLine button {
+  padding: 10px 0;
+  background-color: #9EDFB5;
+  font-size: 18px;
+  font-weight: 300;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.6s;
+}
+
+.addLine button:hover {
+  background-color: #C1EACE;
+}

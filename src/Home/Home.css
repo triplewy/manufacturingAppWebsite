@@ -1,0 +1,26 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.home>ul {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20%;
+}
+
+.home a {
+  display: flex;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.home a:hover {
+  background-color: #f1f1f1;
+}
+
+.home a>p {
+  color: #337ab7;
+  text-align: left;
+}

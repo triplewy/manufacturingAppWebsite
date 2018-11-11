@@ -1,0 +1,30 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.login * {
+  margin-bottom: 30px;
+}
+
+.login>p {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.login>input {
+  width: 500px;
+}
+
+.login>button {
+  font-size: 16px;
+  color: #337ab7;
+  padding: 10px 30px;
+  transition: color 0.5s;
+}
+
+.login>button:hover {
+  color: #ccc;
+}

@@ -1,28 +1,70 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
+import Login from './Auth/Login'
+import Navbar from './Navbar/Navbar'
+import Home from './Home/Home'
+import Company from './Company/Company'
 
-class App extends Component {
+const url = process.env.REACT_APP_API_URL
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+    };
+
+    this.sessionLogin = this.sessionLogin.bind(this)
+    this.loggedIn = this.loggedIn.bind(this)
+  }
+
+  componentDidMount() {
+    this.sessionLogin()
+  }
+
+  sessionLogin() {
+    fetch(url + '/api/sessionLogin', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(res => {
+      console.log(res);
+      return res.json()
+    })
+    .then(data => {
+      console.log(data);
+      if (data.message === 'not logged in') {
+        this.setState({loggedIn: false})
+      } else {
+        this.setState({loggedIn: true})
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  }
+
+  loggedIn() {
+    this.setState({loggedIn: true})
+  }
+
   render() {
+    const PrivateRoute = ({component: Component, ...rest}) => (
+      <Route {...rest} render={(props) => (this.state.loggedIn ? <Component {...props}/> : <Redirect to={{pathname: '/', state: {from: props.location}}} /> )} />
+    )
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>
+          <div>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' render={(props) => this.state.loggedIn ? <Home {...props}/> : <Login {...props} loggedIn={this.loggedIn}/>} />
+              <PrivateRoute exact path='/company/:companyId' component={Company}/>
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
 }
-
-export default App;
