@@ -1,0 +1,50 @@
+#registerDropdown>div {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#registerDropdown>div>p {
+  margin: 0 20px;
+}
+
+#registerDropdown ul {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+#registerDropdown ul>li.notSelected {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 50px;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+#registerDropdown ul>li.notSelected:hover {
+  background-color: #9EDFB5;
+  color: white;
+}
+
+#registerDropdown ul>li.selected {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 50px;
+  cursor: pointer;
+  background-color: #9EDFB5;
+  color: white;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+#registerDropdown>div.registerButton {
+  background-color: #9EDFB5;
+  cursor: pointer;
+}
+
+#registerDropdown>div.registerButton>p {
+  color: white;
+  font-size: 16px;
+}

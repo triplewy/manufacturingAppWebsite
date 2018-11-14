@@ -12,23 +12,39 @@
 
 .fetchList li {
   display: flex;
-  padding: 15px 10px;
+  flex-direction: column;
+}
+
+.fetchList li>div.item {
+  display: flex;
+  height: 50px;
+  padding: 0px 10px;
   cursor: pointer;
   transition: background-color 0.5s;
 }
 
-.fetchList li:hover {
+.fetchList li>div.item:hover {
   background-color: #f1f1f1;
 }
 
-.fetchList li>p {
+.fetchList li>div.item>p {
   margin: auto 0;
   flex: 1;
   text-align: left;
   color: #337ab7;
 }
 
-.fetchList li>button>img {
+.fetchList li>div.item>button>img {
   height: 25px;
   width: 25px;
+}
+
+.fetchList li>div.dropdown {
+  background-color: #f1f1f1;
+  overflow-y: hidden;
+  transition: max-height 1s;
+}
+
+.fetchList li>div.dropdown>div {
+  padding: 20px;
 }

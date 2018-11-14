@@ -18,6 +18,7 @@ export default class Navbar extends Component {
     return (
       <div className='navbar'>
         <Link to='/' className='title'>Streamline</Link>
+        <Link to='/register' className='register'>Non registered users</Link>
         <button>
           <img src={settingsIcon} />
         </button>

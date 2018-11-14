@@ -43,14 +43,22 @@ export default class Lines extends Component {
     var renderedData = [];
     if (this.state.data.length > 0) {
       renderedData = this.state.data.map((item, index) => {
-        return (
-          <li key={item.id}>
-            <p>{item.name}</p>
-            <button>
-              <img src={downCaret}/>
-            </button>
-          </li>
-        )
+        if (this.props.item) {
+          return (
+            <this.props.item {...item} companies={this.props.companies} key={index}/>
+          )
+        } else {
+          return (
+            <li key={item.id}>
+              <div className='item'>
+                <p>{item.name}</p>
+                <button>
+                  <img src={downCaret}/>
+                </button>
+              </div>
+            </li>
+          )
+        }
       })
     }
     return renderedData
@@ -62,11 +70,6 @@ export default class Lines extends Component {
     return (
       <div className='fetchList'>
         <ul>
-          {this.props.title === 'Machine' ?
-            <MachineModal companyId={this.props.companyId} />
-            :
-            <AddModal {...this.props} />
-          }
           {this.renderData()}
         </ul>
       </div>

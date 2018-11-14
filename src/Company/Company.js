@@ -3,6 +3,8 @@ import Users from '../Users/Users'
 import Lines from '../Lines/Lines'
 import FetchList from '../FetchList/FetchList'
 import ImportModal from '../ImportModal/ImportModal'
+import MachineModal from '../MachineModal/MachineModal'
+import LineModal from '../Lines/LineModal'
 import './Company.css';
 
 const url = process.env.REACT_APP_API_URL
@@ -34,9 +36,15 @@ export default class Company extends Component {
         </div>
         {this.state.tab ?
           this.state.tab === 1 ?
-            <FetchList api_url={'/api/admin/company/' + params.companyId + '/lines'} title='Line' key='lines' />
+            <div>
+              <LineModal companyId={params.companyId} />
+              <FetchList api_url={'/api/admin/company/' + params.companyId + '/lines'} title='Line' key='lines' />
+            </div>
             :
-            <FetchList api_url={'/api/admin/company/' + params.companyId + '/machines'} title='Machine' companyId={params.companyId} key='machines' />
+            <div>
+              <MachineModal companyId={params.companyId} />
+              <FetchList api_url={'/api/admin/company/' + params.companyId + '/machines'} title='Machine' companyId={params.companyId} key='machines' />
+            </div>
           :
           <FetchList api_url={'/api/admin/company/' + params.companyId + '/users'} title='User' key='users' />
         }

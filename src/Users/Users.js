@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import downCaret from '../Images/down-caret-icon.png'
+import UserItem from './UserItem'
 import './Users.css';
 
 const url = process.env.REACT_APP_API_URL
@@ -42,12 +43,7 @@ export default class Users extends Component {
     if (this.state.users.length > 0) {
       renderedUsers = this.state.users.map((item, index) => {
         return (
-          <li key={item.userId}>
-            <p>{'User ' + item.userId}</p>
-            <button>
-              <img src={downCaret}/>
-            </button>
-          </li>
+          <UserItem {...item} key={item.userId} />
         )
       })
     }

@@ -44,7 +44,7 @@ export default class ImportModal extends Component {
 
     xhr.onreadystatechange = () => {
      if(xhr.readyState === 4 && xhr.status === 200){
-         this.setState({showModal: false})
+         this.setState({showModal: false, csv: null})
       } else {
         console.log(xhr.responseText);
       }

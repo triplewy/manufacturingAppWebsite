@@ -5,6 +5,7 @@ import Login from './Auth/Login'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
 import Company from './Company/Company'
+import Register from './Register/Register'
 
 const url = process.env.REACT_APP_API_URL
 
@@ -61,6 +62,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path='/' render={(props) => this.state.loggedIn ? <Home {...props}/> : <Login {...props} loggedIn={this.loggedIn}/>} />
               <PrivateRoute exact path='/company/:companyId' component={Company}/>
+              <PrivateRoute exact path='/register' component={Register} />
             </Switch>
           </div>
         </BrowserRouter>

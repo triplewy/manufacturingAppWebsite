@@ -94,9 +94,9 @@ export default class MachineModal extends Component {
   render() {
     console.log(this.state.line);
     return (
-      <li>
-        <div style={{flex: 1}} onClick={this.toggleModal}>
-          <p style={{textAlign: 'center'}}>New Machine</p>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div className='newButton' onClick={this.toggleModal}>
+          <p style={{textAlign: 'center'}}>Add Machine</p>
         </div>
         <Modal show={this.state.showModal} onHide={this.toggleModal}>
           <Modal.Header closeButton>
@@ -120,7 +120,7 @@ export default class MachineModal extends Component {
             <button onClick={this.submit} disabled={this.state.name.length === 0} style={{backgroundColor: this.state.name.length === 0 ? '#ccc' : '#9EDFB5'}}>Submit</button>
           </Modal.Body>
         </Modal>
-      </li>
+      </div>
     )
   }
 }
