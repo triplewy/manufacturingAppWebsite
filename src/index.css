@@ -67,3 +67,36 @@ button {
 button:focus {
   outline: none;
 }
+
+.dropdown {
+  margin: auto 0;
+}
+
+.open>.dropdown-toggle.btn-default:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.btn-default:focus {
+  background-color: transparent;
+}
+
+.btn-default:hover {
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-toggle {
+  border: none;
+  background-color: none;
+  box-shadow: none;
+}
+
+.dropdown-toggle:focus {
+  background-color: none;
+}
+
+.dropdown-menu {
+  margin: 0 0;
+  padding: 0 0;
+}

@@ -22,7 +22,7 @@ export default class UserItem extends Component {
             <img src={downCaret}/>
           </button>
         </div>
-        <UserDropdown show={this.state.show} userId={this.props.userId}/>
+        <UserDropdown show={this.state.show} userId={this.props.userId} companyId={this.props.companyId} />
       </li>
     )
   }

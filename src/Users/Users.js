@@ -43,7 +43,7 @@ export default class Users extends Component {
     if (this.state.users.length > 0) {
       renderedUsers = this.state.users.map((item, index) => {
         return (
-          <UserItem {...item} key={item.userId} />
+          <UserItem {...item} companyId={this.props.companyId} key={item.userId} />
         )
       })
     }
@@ -54,7 +54,7 @@ export default class Users extends Component {
 
   render() {
     return (
-      <div className='users'>
+      <div className='fetchList'>
         <ul>
           {this.renderUsers()}
         </ul>

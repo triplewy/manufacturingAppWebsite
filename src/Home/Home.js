@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import AddCompanyModal from './AddCompanyModal'
 import './Home.css';
 
 const url = process.env.REACT_APP_API_URL
@@ -54,18 +55,10 @@ export default class Home extends Component {
   render() {
     return (
       <div className='home'>
-        <p>Companies</p>
+        <p style={{marginBottom: 30}}>Companies</p>
+        <AddCompanyModal />
         <ul>
           {this.renderCompanies()}
-          {/* <li>
-            <p>Manage Users</p>
-          </li>
-          <li>
-            <p>Manage Factories</p>
-          </li>
-          <li>
-            <p>Manage Lines</p>
-          </li> */}
         </ul>
       </div>
     );

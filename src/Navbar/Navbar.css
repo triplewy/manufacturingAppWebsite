@@ -27,7 +27,7 @@
   font-weight: 300;
 }
 
-.navbar>button>img {
+#settingsIcon {
   width: 27px;
   height: 27px;
 }

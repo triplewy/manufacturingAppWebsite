@@ -58,7 +58,7 @@ export default class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar loggedIn={this.state.loggedIn} />
             <Switch>
               <Route exact path='/' render={(props) => this.state.loggedIn ? <Home {...props}/> : <Login {...props} loggedIn={this.loggedIn}/>} />
               <PrivateRoute exact path='/company/:companyId' component={Company}/>

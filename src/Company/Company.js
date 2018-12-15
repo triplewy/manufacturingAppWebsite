@@ -46,7 +46,8 @@ export default class Company extends Component {
               <FetchList api_url={'/api/admin/company/' + params.companyId + '/machines'} title='Machine' companyId={params.companyId} key='machines' />
             </div>
           :
-          <FetchList api_url={'/api/admin/company/' + params.companyId + '/users'} title='User' key='users' />
+          <Users companyId={params.companyId} />
+          // <FetchList api_url={'/api/admin/company/' + params.companyId + '/users'} title='User' key='users' />
         }
       </div>
     );
