@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Users from '../Users/Users'
 import Lines from '../Lines/Lines'
 import FetchList from '../FetchList/FetchList'
+import NotificationModal from '../NotificationModal/NotificationModal'
 import ImportModal from '../ImportModal/ImportModal'
 import MachineModal from '../MachineModal/MachineModal'
 import LineModal from '../Lines/LineModal'
@@ -29,6 +30,7 @@ export default class Company extends Component {
       <div className='company'>
         <p>{params.name}</p>
         <ImportModal companyId={params.companyId} />
+        <NotificationModal companyId={params.companyId} />
         <div className='tabs'>
           <button style={{boxShadow: this.state.tab === 0 ? '0 1px 0 0 #337ab7' : 'none'}} onClick={this.toggleTab.bind(this, 0)}>Users</button>
           <button style={{boxShadow: this.state.tab === 1 ? '0 1px 0 0 #337ab7' : 'none'}} onClick={this.toggleTab.bind(this, 1)}>Lines</button>

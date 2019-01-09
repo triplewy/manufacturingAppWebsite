@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Dropdown } from 'react-bootstrap'
 import LineList from '../Lines/LineList'
 import './UserDropdown.css';
 
@@ -8,7 +9,8 @@ export default class UserDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lines: []
+      lines: [],
+      isAdmin: false
     };
 
     this.fetchUser = this.fetchUser.bind(this)
@@ -25,7 +27,7 @@ export default class UserDropdown extends Component {
   }
 
   fetchUser() {
-    fetch(url + '/api/admin/user=' + this.props.userId + '/lines', {
+    fetch(url + '/api/admin/user=' + this.props.userId, {
       credentials: 'include',
     })
     .then(res => res.json())
@@ -34,11 +36,13 @@ export default class UserDropdown extends Component {
         // this.setState({failedLogin: 1})
       } else {
         console.log(data);
-        var lineIds = []
-        for (var i = 0; i < data.length; i++) {
-          lineIds.push(data[i].lineId)
+        if (data.length > 0) {
+          var lineIds = []
+          for (var i = 0; i < data.length; i++) {
+            lineIds.push(data[i].lineId)
+          }
+          this.setState({lines: lineIds, isAdmin: data[0].isAdmin})
         }
-        this.setState({lines: lineIds})
       }
     })
     .catch(function(err) {
@@ -66,7 +70,8 @@ export default class UserDropdown extends Component {
       credentials: 'include',
       body: JSON.stringify({
         userId: this.props.userId,
-        lineIds: this.state.lines
+        lineIds: this.state.lines,
+        isAdmin: this.state.isAdmin
       })
     })
     .then(res => res.json())
@@ -119,8 +124,25 @@ export default class UserDropdown extends Component {
 
   render() {
     return (
-      <div className='dropdown' id='userDropdown' style={{maxHeight: this.props.show ? '600px' : '0px'}}>
-        <LineList companyId={this.props.companyId} lines={this.state.lines} selectLine={this.selectLine}/>
+      <div className='dropdown' id='userDropdown' style={{maxHeight: this.props.show ? '1000px' : '0px'}}>
+        <div>
+          <p>Is Admin?</p>
+          <Dropdown id="selectCompany" open={this.state.open}>
+            <Dropdown.Toggle>
+              {this.state.isAdmin ? 'Yes' : 'No'}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className='profileMenu'>
+              <li onClick={() => this.setState({ isAdmin : true })}>Yes</li>
+              <li onClick={() => this.setState({ isAdmin : false })}>No</li>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        {
+          this.props.show ?
+          <LineList companyId={this.props.companyId} lines={this.state.lines} selectLine={this.selectLine}/>
+          :
+          null
+        }
         <div>
           <button className="save" onClick={this.save}>Save</button>
           <button className="delete" onClick={this.delete}>Delete User</button>

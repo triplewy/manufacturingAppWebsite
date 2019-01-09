@@ -26,6 +26,7 @@ export default class Home extends Component {
     })
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       if (data.message === 'Unauthorized Access') {
         // this.setState({failedLogin: 1})
       } else {

@@ -12,6 +12,7 @@ export default class RegisterDropdown extends Component {
     super(props);
     this.state = {
       company: -1,
+      isAdmin: false,
       lines: [],
       selectedLines: []
     };
@@ -104,7 +105,8 @@ export default class RegisterDropdown extends Component {
       body: JSON.stringify({
         userId: this.props.userId,
         companyId: this.props.companies[this.state.company].companyId,
-        lineIds: lineIds
+        lineIds: lineIds,
+        isAdmin: this.state.isAdmin
       })
     })
     .then(res => res.json())
@@ -127,7 +129,7 @@ export default class RegisterDropdown extends Component {
 
   render() {
     return (
-      <div className='dropdown' id='registerDropdown' style={{maxHeight: this.props.show ? '600px' : '0px'}}>
+      <div className='dropdown' id='registerDropdown' style={{maxHeight: this.props.show ? '800px' : '0px'}}>
         <div>
           <p>Company:</p>
           <Dropdown id="selectCompany" open={this.state.open}>
@@ -136,6 +138,18 @@ export default class RegisterDropdown extends Component {
             </Dropdown.Toggle>
             <Dropdown.Menu className='profileMenu'>
               {this.renderCompanies()}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <div>
+          <p>Is Admin?</p>
+          <Dropdown id="selectCompany" open={this.state.open}>
+            <Dropdown.Toggle>
+              {this.state.isAdmin ? 'Yes' : 'No'}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className='profileMenu'>
+              <li onClick={() => this.setState({ isAdmin : true })}>Yes</li>
+              <li onClick={() => this.setState({ isAdmin : false })}>No</li>
             </Dropdown.Menu>
           </Dropdown>
         </div>
