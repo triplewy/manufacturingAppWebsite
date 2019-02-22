@@ -6,6 +6,7 @@ import NotificationModal from '../NotificationModal/NotificationModal'
 import ImportModal from '../ImportModal/ImportModal'
 import MachineModal from '../MachineModal/MachineModal'
 import LineModal from '../Lines/LineModal'
+import FileSaver from 'file-saver';
 import './Company.css';
 
 const url = process.env.REACT_APP_API_URL
@@ -18,10 +19,27 @@ export default class Company extends Component {
     };
 
     this.toggleTab = this.toggleTab.bind(this)
+    this.exportCSV = this.exportCSV.bind(this)
   }
 
   toggleTab(index) {
     this.setState({tab: index})
+  }
+
+  exportCSV() {
+    fetch(url + '/api/admin/company/' + this.props.location.state.companyId + '/export/csv', {
+      credentials: 'include',
+      headers: {
+        'Content-Disposition': 'attachment; filename=downtime.csv filename*=downtime.csv'
+      }
+    })
+    .then(res => res.blob())
+    .then(data => {
+      FileSaver.saveAs(data, 'downtime.csv');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   render() {
@@ -30,6 +48,7 @@ export default class Company extends Component {
       <div className='company'>
         <p>{params.name}</p>
         <ImportModal companyId={params.companyId} />
+        <button onClick={this.exportCSV}>Export CSV</button>
         <NotificationModal companyId={params.companyId} />
         <div className='tabs'>
           <button style={{boxShadow: this.state.tab === 0 ? '0 1px 0 0 #337ab7' : 'none'}} onClick={this.toggleTab.bind(this, 0)}>Users</button>
